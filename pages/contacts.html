@@ -9,28 +9,111 @@
     <body>
         <div class="page-container">
             <div class="header">Контакты Калугина Никиты</div>
+            
             <div class="nav">
-                <ul class="nav-list">
-                    <li class="nav-item"><a class="nav-link" href="../index.html">Главная</a></li>
-                    <li class="nav-item"><a class="nav-link" href="news.html">Новости</a></li>
-                    <li class="nav-item"><a class="nav-link" href="practices.html">Практики</a></li> 
-                    <li class="nav-item"><a class="nav-link" href="goods.html">Товары</a></li>
-                    <li class="nav-item"><a class="nav-link" href="contacts.html">Контакты</a></li>
-                </ul>
-            </div>
-            <div class="content">
-                <div class="contacts-container">
-                    <h2 class="section-title">Контакты</h2>
-                    <div class="contact-info">
-                        <p>Адрес электронной почты: kalugin.n.a@edu.mirea.ru</p>
+                <div class="nav-container">
+                    <a href="../index.html" class="nav-brand">Portfolio</a>
+                    
+                    <ul class="nav-list">
+                        <li class="nav-item"><a class="nav-link" href="../index.html">Главная</a></li>
+                        <li class="nav-item"><a class="nav-link" href="news.html">Новости</a></li>
+                        <li class="nav-item"><a class="nav-link" href="practices.html">Практики</a></li> 
+                        <li class="nav-item"><a class="nav-link" href="goods.html">Товары</a></li>
+                        <li class="nav-item"><a class="nav-link active" href="contacts.html">Контакты</a></li>
+                    </ul>
+                    
+                    <div class="menu-toggle" id="menuToggle">
+                        <span></span>
+                        <span></span>
+                        <span></span>
                     </div>
-                    <div class="contact-info">
-                        <p>Адрес: Сербия. Ул. Spirit, д.5</p>
-                    </div>
-                    <button class="contact-button">Не звоните мне</button>
                 </div>
             </div>
+            
+            <div class="mobile-menu" id="mobileMenu">
+                <div class="mobile-menu-header">
+                    <h3>Меню</h3>
+                    <button class="mobile-menu-close" id="menuClose">×</button>
+                </div>
+                <ul class="mobile-nav-list">
+                    <li class="mobile-nav-item"><a class="mobile-nav-link" href="../index.html">Главная</a></li>
+                    <li class="mobile-nav-item"><a class="mobile-nav-link" href="news.html">Новости</a></li>
+                    <li class="mobile-nav-item"><a class="mobile-nav-link" href="practices.html">Практики</a></li> 
+                    <li class="mobile-nav-item"><a class="mobile-nav-link" href="goods.html">Товары</a></li>
+                    <li class="mobile-nav-item"><a class="mobile-nav-link active" href="contacts.html">Контакты</a></li>
+                </ul>
+            </div>
+
+            <div class="content">
+                <h1 class="page-title">Контакты</h1>
+                <div class="contacts-container">
+                    <div class="contact-info">
+                        <h3>Контактная информация</h3>
+                        <p><strong>Адрес электронной почты:</strong> kalugin.n.a@edu.mirea.ru</p>
+                        <p><strong>Адрес:</strong> Сербия. Ул. Team Spirit, д.5</p>
+                    </div>
+                    
+                    <button class="contact-button" id="openModal">Связаться с технической поддержкой</button>
+                </div>
+            </div>
+
+            <!-- Модальное окно -->
+            <div class="modal-overlay" id="modalOverlay">
+                <div class="modal">
+                    <div class="modal-header">
+                        <h2>Электронная почта</h2>
+                        <button class="modal-close" id="modalClose">×</button>
+                    </div>
+                    
+                    <div class="modal-content">
+                        <h3>Форма обратной связи</h3>
+                        
+                        <form class="contact-form" id="contactForm">
+                            <div class="form-group">
+                                <label for="name">Имя *</label>
+                                <input type="text" id="name" name="name" placeholder="Введите ваше имя" required>
+                            </div>
+                            
+                            <div class="form-group">
+                                <label for="phone">Телефон *</label>
+                                <input type="tel" id="phone" name="phone" placeholder="+7 (XXX) XXX-XX-XX" required>
+                            </div>
+                            
+                            <div class="form-group">
+                                <label for="email">Электронная почта *</label>
+                                <input type="email" id="email" name="email" placeholder="example@mail.ru" required>
+                            </div>
+                            
+                            <div class="form-group">
+                                <label for="category">Категория обращения *</label>
+                                <select id="category" name="category" required>
+                                    <option value="">Выберите категорию</option>
+                                    <option value="technical">Техническая поддержка</option>
+                                    <option value="cooperation">Сотрудничество</option>
+                                    <option value="question">Вопрос</option>
+                                    <option value="complaint">Жалоба</option>
+                                    <option value="other">Другое</option>
+                                </select>
+                            </div>
+                            
+                            <div class="form-group">
+                                <label for="message">Текст обращения *</label>
+                                <textarea id="message" name="message" placeholder="Опишите вашу проблему или вопрос..." rows="5" required></textarea>
+                            </div>
+                            
+                            <div class="form-actions">
+                                <button type="button" class="btn-cancel" id="cancelBtn">Отмена</button>
+                                <button type="submit" class="btn-submit">Отправить</button>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+            </div>
+
             <div class="footer">2025 ООО "Тмыв денег"</div>    
         </div>
+
+        <script src="../js/menu.js"></script>
+        <script src="../js/modal.js"></script>
     </body>
 </html>
