@@ -969,3 +969,58 @@ html {
         width: 100%;
     }
 }
+
+/* Стили для модального окна контактов */
+.invalid-feedback {
+    color: #dc3545 !important;
+    font-size: 0.875rem;
+}
+
+.is-invalid {
+    border-color: #dc3545 !important;
+}
+
+.is-invalid:focus {
+    border-color: #dc3545 !important;
+    box-shadow: 0 0 0 0.2rem rgba(220, 53, 69, 0.25) !important;
+}
+
+/* Стили для toast уведомлений */
+.toast {
+    background-color: #1a1a1a;
+    border: 1px solid #495057;
+}
+
+.toast-header {
+    border-bottom: 1px solid #495057;
+}
+
+/* Анимации для модального окна */
+.modal-content {
+    animation: modalSlideIn 0.3s ease-out;
+}
+
+@keyframes modalSlideIn {
+    from {
+        opacity: 0;
+        transform: translateY(-50px) scale(0.9);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0) scale(1);
+    }
+}
+
+/* Стили для формы */
+.form-control:focus,
+.form-select:focus {
+    border-color: #ffc107 !important;
+    box-shadow: 0 0 0 0.2rem rgba(255, 193, 7, 0.25) !important;
+}
+
+/* Адаптивность для модального окна */
+@media (max-width: 576px) {
+    .modal-dialog {
+        margin: 0.5rem;
+    }
+}

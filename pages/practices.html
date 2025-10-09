@@ -1,73 +1,147 @@
 <!DOCTYPE html>
 <html lang="ru">
-    <head>
-        <meta charset="UTF-8">
-        <meta name="viewport" content="width=device-width, initial-scale=1.0">
-        <title>Практики</title>
-        <script src="../js/menu.js"></script>
-        <link rel="stylesheet" href="../style/styles.css">
-    </head>
-    <body>
-        <div class="page-container">
-            <div class="header">Портфолио Калугина Никиты</div>
-            
-            <div class="nav">
-                <div class="nav-container">
-                    <a href="../index.html" class="nav-brand">Portfolio</a>
-                    
-                    <ul class="nav-list">
-                        <li class="nav-item"><a class="nav-link" href="../index.html">Главная</a></li>
-                        <li class="nav-item"><a class="nav-link" href="news.html">Новости</a></li>
-                        <li class="nav-item"><a class="nav-link active" href="practices.html">Практики</a></li> 
-                        <li class="nav-item"><a class="nav-link" href="goods.html">Товары</a></li>
-                        <li class="nav-item"><a class="nav-link" href="contacts.html">Контакты</a></li>
-                    </ul>
-                    
-                    <div class="menu-toggle" id="menuToggle">
-                        <span></span>
-                        <span></span>
-                        <span></span>
-                    </div>
-                </div>
-            </div>
-            
-            <div class="mobile-menu" id="mobileMenu">
-                <div class="mobile-menu-header">
-                    <h3>Меню</h3>
-                    <button class="mobile-menu-close" id="menuClose">×</button>
-                </div>
-                <ul class="mobile-nav-list">
-                    <li class="mobile-nav-item"><a class="mobile-nav-link" href="../index.html">Главная</a></li>
-                    <li class="mobile-nav-item"><a class="mobile-nav-link" href="news.html">Новости</a></li>
-                    <li class="mobile-nav-item"><a class="mobile-nav-link active" href="practices.html">Практики</a></li> 
-                    <li class="mobile-nav-item"><a class="mobile-nav-link" href="goods.html">Товары</a></li>
-                    <li class="mobile-nav-item"><a class="mobile-nav-link" href="contacts.html">Контакты</a></li>
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Практики - Калугин Никита</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="../style/styles.css">
+</head>
+<body class="bg-dark">
+    <header class="bg-dark border-bottom border-warning">
+        <div class="container py-3">
+            <h1 class="h3 text-center mb-0 text-white">Практики Калугина Никиты</h1>
+        </div>
+    </header>
+
+    <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+        <div class="container">
+            <a class="navbar-brand fw-bold text-white" href="../index.html">Portfolio</a>
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarNav">
+                <ul class="navbar-nav ms-auto">
+                    <li class="nav-item"><a class="nav-link text-white" href="../index.html">Главная</a></li>
+                    <li class="nav-item"><a class="nav-link text-white" href="news.html">Новости</a></li>
+                    <li class="nav-item"><a class="nav-link active text-white" href="practices.html">Практики</a></li>
+                    <li class="nav-item"><a class="nav-link text-white" href="goods.html">Товары</a></li>
+                    <li class="nav-item"><a class="nav-link text-white" href="contacts.html">Контакты</a></li>
                 </ul>
             </div>
+        </div>
+    </nav>
 
-            <div class="content">
-                <h1 class="page-title">Мои практики</h1>
-                <div class="practices-container">
-                    <div class="practice-card">
-                        <h2 class="practice-title">Бустинг аккаунтов в Dota 2</h2>
-                        <p class="practice-meta">2022-2023 гг.</p>
-                        <p class="practice-text">Профессионально занимался повышением MMR аккаунтов в Dota 2. Достиг высокого рейтинга для клиентов, освоил стратегии игры на разных позициях и получил опыт работы с международными заказчиками.</p>
+    <main class="container my-5">
+        <h1 class="text-center mb-5 text-white">Учебные практики и проекты</h1>
+        
+        <div class="row g-4">
+            <div class="col-lg-10 mx-auto">
+                <div class="card bg-dark border-warning mb-4">
+                    <div class="card-body">
+                        <h2 class="card-title h4 text-white">Практика по веб-разработке</h2>
+                        <div class="text-warning mb-3">Сентябрь 2023 - Декабрь 2023</div>
+                        <p class="card-text" style="color: #e2e8f0; font-size: 1.1rem; line-height: 1.6;">
+                            Практика в IT-компании по направлению фронтенд-разработки. Разрабатывал пользовательские 
+                            интерфейсы для веб-приложений, работал с адаптивной версткой и оптимизацией производительности.
+                        </p>
+                        <h5 class="text-white mt-4">Основные задачи:</h5>
+                        <ul style="color: #e2e8f0;">
+                            <li>Разработка адаптивных лендингов на HTML/CSS</li>
+                            <li>Создание интерактивных элементов на JavaScript</li>
+                            <li>Интеграция с REST API</li>
+                            <li>Оптимизация загрузки страниц</li>
+                        </ul>
+                        <div class="mt-3">
+                            <span class="badge bg-primary me-1">HTML5</span>
+                            <span class="badge bg-success me-1">CSS3</span>
+                            <span class="badge bg-warning text-dark me-1">JavaScript</span>
+                            <span class="badge bg-info me-1">Bootstrap</span>
+                            <span class="badge bg-secondary">REST API</span>
+                        </div>
                     </div>
-                    <div class="practice-card">
-                        <h2 class="practice-title">Торговля мандаринами на рынке</h2>
-                        <p class="practice-meta">Зима 2021 года</p>
-                        <p class="practice-text">Организовал сезонную торговлю мандаринами на местном рынке. Приобрел опыт закупок товара, ценообразования, работы с клиентами и управления малым бизнесом в условиях высокой конкуренции.</p>
+                </div>
+
+                <div class="card bg-dark border-info mb-4">
+                    <div class="card-body">
+                        <h2 class="card-title h4 text-white">Учебный проект: Система управления задачами</h2>
+                        <div class="text-info mb-3">Октябрь 2023 - Ноябрь 2023</div>
+                        <p class="card-text" style="color: #e2e8f0; font-size: 1.1rem; line-height: 1.6;">
+                            Разработка полнофункционального веб-приложения для управления задачами с возможностью 
+                            создания, редактирования, удаления и категоризации задач. Реализована система фильтрации и поиска.
+                        </p>
+                        <h5 class="text-white mt-4">Функциональность:</h5>
+                        <ul style="color: #e2e8f0;">
+                            <li>CRUD операции с задачами</li>
+                            <li>Система категорий и тегов</li>
+                            <li>Фильтрация и поиск</li>
+                            <li>Локальное хранение данных</li>
+                        </ul>
+                        <div class="mt-3">
+                            <span class="badge bg-primary me-1">HTML</span>
+                            <span class="badge bg-success me-1">CSS</span>
+                            <span class="badge bg-warning text-dark me-1">JavaScript</span>
+                            <span class="badge bg-info">Local Storage</span>
+                        </div>
                     </div>
-                    <div class="practice-card">
-                        <h2 class="practice-title">Покупка и тюнинг Lada Granta</h2>
-                        <p class="practice-meta">2024 год</p>
-                        <p class="practice-text">Приобрел автомобиль Lada Granta и занялся его техническим улучшением. Изучил устройство автомобиля, провел ряд модификаций для повышения комфорта и производительности транспортного средства.</p>
+                </div>
+
+                <div class="card bg-dark border-success mb-4">
+                    <div class="card-body">
+                        <h2 class="card-title h4 text-white">Практика по базам данных</h2>
+                        <div class="text-success mb-3">Март 2023 - Май 2023</div>
+                        <p class="card-text" style="color: #e2e8f0; font-size: 1.1rem; line-height: 1.6;">
+                            Изучение и практическое применение реляционных баз данных. Спроектировал и реализовал 
+                            базу данных для интернет-магазина, включая таблицы товаров, пользователей и заказов.
+                        </p>
+                        <h5 class="text-white mt-4">Реализовано:</h5>
+                        <ul style="color: #e2e8f0;">
+                            <li>Проектирование схемы базы данных</li>
+                            <li>Создание таблиц и связей</li>
+                            <li>Написание SQL-запросов</li>
+                            <li>Оптимизация производительности</li>
+                        </ul>
+                        <div class="mt-3">
+                            <span class="badge bg-danger me-1">MySQL</span>
+                            <span class="badge bg-secondary me-1">Database Design</span>
+                            <span class="badge bg-dark">SQL</span>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="card bg-dark border-warning">
+                    <div class="card-body">
+                        <h2 class="card-title h4 text-white">Фриланс-проекты</h2>
+                        <div class="text-warning mb-3">2022 - настоящее время</div>
+                        <p class="card-text" style="color: #e2e8f0; font-size: 1.1rem; line-height: 1.6;">
+                            Регулярная работа над коммерческими проектами для различных клиентов. Разработка сайтов 
+                            визиток, лендингов и небольших веб-приложений под конкретные требования заказчиков.
+                        </p>
+                        <h5 class="text-white mt-4">Ключевые проекты:</h5>
+                        <ul style="color: #e2e8f0;">
+                            <li>Сайт-визитка для фотографа</li>
+                            <li>Лендинг для кофейни</li>
+                            <li>Интернет-магазин электроники</li>
+                            <li>Корпоративный сайт для IT-компании</li>
+                        </ul>
+                        <div class="mt-3">
+                            <span class="badge bg-primary me-1">HTML/CSS</span>
+                            <span class="badge bg-warning text-dark me-1">JavaScript</span>
+                            <span class="badge bg-info me-1">Bootstrap</span>
+                            <span class="badge bg-success">Responsive Design</span>
+                        </div>
                     </div>
                 </div>
             </div>
-            <div class="footer">2025 ООО "Тмыв денег"</div>    
         </div>
+    </main>
 
-        
-    </body>
+    <footer class="bg-dark text-warning text-center py-3 border-top border-warning mt-5">
+        <div class="container">
+            <p class="mb-0">2025 ООО "Тмыв денег"</p>
+        </div>
+    </footer>
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+</body>
 </html>
