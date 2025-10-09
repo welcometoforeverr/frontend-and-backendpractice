@@ -22,6 +22,16 @@
             font-size: 1rem;
             line-height: 1.5;
         }
+        .discount-badge {
+            font-size: 0.9rem;
+            font-weight: bold;
+            z-index: 10;
+        }
+        .old-price {
+            text-decoration: line-through;
+            color: #a0aec0 !important;
+            font-size: 0.9rem;
+        }
     </style>
 </head>
 <body class="bg-dark text-light">
@@ -81,14 +91,22 @@
                 </div>
             </div>
 
-            <!-- Product 2 -->
+            <!-- Product 2 со скидкой -->
             <div class="col-md-4">
-                <div class="card h-100 card-bg-custom border-warning">
+                <div class="card h-100 card-bg-custom border-warning position-relative">
+                    <!-- Бейдж скидки -->
+                    <span class="position-absolute top-0 start-100 translate-middle badge rounded-pill bg-danger discount-badge">
+                        -20%
+                        <span class="visually-hidden">скидка</span>
+                    </span>
                     <img src="../images/goods2.jpg" class="card-img-top p-3" alt="Аркана на шейкера" style="height: 200px; object-fit: cover;">
                     <div class="card-body">
                         <h3 class="card-title h5 text-white">Аркана на шейкера</h3>
                         <p class="product-description mb-2">Эксклюзивная аркана для Earthshaker. Огромные трещины и спецэффекты!</p>
-                        <p class="h5 text-warning mb-0 fw-bold">9970 RUB</p>
+                        <div class="price-container">
+                            <p class="old-price mb-1">12462 RUB</p>
+                            <p class="h5 text-warning mb-0 fw-bold">9970 RUB</p>
+                        </div>
                     </div>
                     <div class="card-footer bg-transparent border-warning">
                         <button class="btn btn-warning w-100 text-dark fw-bold">Купить сейчас</button>
