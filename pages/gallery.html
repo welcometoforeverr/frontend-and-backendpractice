@@ -1,0 +1,490 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Галерея проектов - Адаптивные изображения</title>
+    <style>
+        /* Базовые сбросы и переменные */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        :root {
+            --primary-color: #2563eb;
+            --primary-dark: #1d4ed8;
+            --text-color: #1e293b;
+            --text-light: #64748b;
+            --bg-color: #f8fafc;
+            --border-color: #e2e8f0;
+            --shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1);
+            --radius: 8px;
+            --transition: all 0.3s ease;
+        }
+
+        body {
+            font-family: 'Segoe UI', system-ui, sans-serif;
+            line-height: 1.6;
+            color: var(--text-color);
+            background-color: var(--bg-color);
+            padding: 20px;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        /* Навигация */
+        .nav {
+            background: linear-gradient(135deg, #1e293b, #334155);
+            padding: 1rem 2rem;
+            border-radius: var(--radius);
+            box-shadow: var(--shadow);
+            margin-bottom: 2rem;
+        }
+
+        .nav__list {
+            display: flex;
+            list-style: none;
+            gap: 2rem;
+            justify-content: center;
+        }
+
+        .nav__link {
+            text-decoration: none;
+            color: white;
+            font-weight: 500;
+            padding: 0.5rem 1rem;
+            border-radius: var(--radius);
+            transition: var(--transition);
+        }
+
+        .nav__link:hover {
+            background: var(--primary-color);
+            color: white;
+        }
+
+        .nav__link.active {
+            background: var(--primary-color);
+            color: white;
+        }
+
+        /* Шапка */
+        .header {
+            text-align: center;
+            margin-bottom: 3rem;
+            padding: 3rem 2rem;
+            background: linear-gradient(135deg, #1e293b, #0f172a);
+            border-radius: var(--radius);
+            box-shadow: var(--shadow);
+            color: white;
+        }
+
+        .header__title {
+            font-size: 2.5rem;
+            margin-bottom: 1rem;
+            color: white;
+        }
+
+        .header__subtitle {
+            font-size: 1.2rem;
+            color: #e2e8f0;
+            opacity: 0.9;
+        }
+
+        /* Секции */
+        .section {
+            background: white;
+            margin-bottom: 3rem;
+            padding: 2rem;
+            border-radius: var(--radius);
+            box-shadow: var(--shadow);
+        }
+
+        .section__title {
+            font-size: 1.8rem;
+            margin-bottom: 1.5rem;
+            color: var(--primary-color);
+            border-bottom: 2px solid var(--border-color);
+            padding-bottom: 0.5rem;
+        }
+
+        /* Контейнер для изображений */
+        .image-container {
+            margin-bottom: 1.5rem;
+            border: 2px dashed var(--border-color);
+            border-radius: var(--radius);
+            padding: 1rem;
+            background: #f8fafc;
+        }
+
+        /* Адаптивная галерея */
+        .gallery {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 1rem;
+            margin-bottom: 1.5rem;
+        }
+
+        .gallery__item {
+            overflow: hidden;
+            border-radius: var(--radius);
+            background: white;
+            border: 1px solid var(--border-color);
+            transition: var(--transition);
+        }
+
+        .gallery__item:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 25px -5px rgba(0, 0, 0, 0.15);
+        }
+
+        .gallery__image {
+            width: 100%;
+            height: 200px;
+            object-fit: cover;
+            transition: var(--transition);
+        }
+
+        .gallery__image:hover {
+            transform: scale(1.05);
+        }
+
+        /* Блоки с объяснениями */
+        .explanation {
+            background: #f1f5f9;
+            padding: 1.5rem;
+            border-radius: var(--radius);
+            border-left: 4px solid var(--primary-color);
+        }
+
+        .explanation h3 {
+            margin-bottom: 1rem;
+            color: var(--primary-color);
+        }
+
+        .explanation ul {
+            list-style-position: inside;
+        }
+
+        .explanation li {
+            margin-bottom: 0.5rem;
+            padding-left: 1rem;
+        }
+
+        /* Object-fit демонстрация */
+        .object-fit-demo {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 1rem;
+            margin-bottom: 1.5rem;
+        }
+
+        .object-fit-item {
+            text-align: center;
+            background: white;
+            padding: 1rem;
+            border-radius: var(--radius);
+            border: 1px solid var(--border-color);
+        }
+
+        .object-fit-item img {
+            width: 100%;
+            height: 200px;
+            border: 2px solid var(--border-color);
+            border-radius: var(--radius);
+            margin-bottom: 0.5rem;
+        }
+
+        .object-fit-cover {
+            object-fit: cover;
+        }
+
+        .object-fit-contain {
+            object-fit: contain;
+            background: #f1f5f9;
+        }
+
+        .object-fit-fill {
+            object-fit: fill;
+        }
+
+        /* Подвал */
+        .footer {
+            text-align: center;
+            padding: 2rem;
+            background: linear-gradient(135deg, #1e293b, #0f172a);
+            border-radius: var(--radius);
+            box-shadow: var(--shadow);
+            color: #e2e8f0;
+        }
+
+        /* Кнопка */
+        .btn {
+            display: inline-block;
+            background: var(--primary-color);
+            color: white;
+            padding: 0.75rem 1.5rem;
+            text-decoration: none;
+            border-radius: var(--radius);
+            font-weight: 500;
+            transition: var(--transition);
+            margin-top: 1rem;
+        }
+
+        .btn:hover {
+            background: var(--primary-dark);
+            transform: translateY(-2px);
+        }
+
+        /* Адаптивность для мобильных устройств */
+        @media (max-width: 768px) {
+            body {
+                padding: 10px;
+            }
+            
+            .nav__list {
+                flex-direction: column;
+                gap: 0.5rem;
+            }
+            
+            .header__title {
+                font-size: 2rem;
+            }
+            
+            .section {
+                padding: 1rem;
+            }
+            
+            .gallery {
+                grid-template-columns: repeat(2, 1fr);
+            }
+            
+            .object-fit-demo {
+                grid-template-columns: 1fr;
+                gap: 1rem;
+            }
+            
+            .gallery__image {
+                height: 150px;
+            }
+            
+            .object-fit-item img {
+                height: 150px;
+            }
+        }
+
+        @media (max-width: 480px) {
+            .header__title {
+                font-size: 1.5rem;
+            }
+            
+            .section__title {
+                font-size: 1.3rem;
+            }
+            
+            .gallery {
+                grid-template-columns: 1fr;
+            }
+        }
+
+        /* Поддержка высоких экранов */
+        @media (min-height: 800px) and (min-width: 1200px) {
+            .gallery__image {
+                height: 250px;
+            }
+        }
+
+        /* Темная тема */
+        @media (prefers-color-scheme: dark) {
+            :root {
+                --text-color: #e2e8f0;
+                --bg-color: #0f172a;
+                --border-color: #334155;
+            }
+
+            body {
+                background-color: var(--bg-color);
+                color: var(--text-color);
+            }
+
+            .section {
+                background: #1e293b;
+            }
+
+            .explanation {
+                background: #334155;
+            }
+
+            .object-fit-contain {
+                background: #475569;
+            }
+
+            .gallery__item {
+                background: #1e293b;
+                border-color: #334155;
+            }
+
+            .object-fit-item {
+                background: #1e293b;
+                border-color: #334155;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <!-- Навигация -->
+        <nav class="nav">
+            <ul class="nav__list">
+                <li><a href="../index.html" class="nav__link">Главная</a></li>
+                <li><a href="gallery.html" class="nav__link active">Галерея</a></li>
+            </ul>
+        </nav>
+
+        <header class="header">
+            <h1 class="header__title">Галерея проектов</h1>
+            <p class="header__subtitle">Демонстрация адаптивных изображений</p>
+        </header>
+
+        <main class="main">
+            <!-- Секция 1: Адаптивная галерея -->
+            <section class="section">
+                <h2 class="section__title">Наши работы</h2>
+                
+                <div class="explanation">
+                    <h3>Что происходит:</h3>
+                    <ul>
+                        <li><strong>На десктопах:</strong> 4 изображения в ряд, пропорциональное масштабирование</li>
+                        <li><strong>На планшетах:</strong> 2 изображения в ряд, адаптивное отображение</li>
+                        <li><strong>На мобильных:</strong> 1 изображение в ряд, полная видимость</li>
+                        <li><strong>Особенности:</strong> Lazy loading, поддержка Retina, разные форматы</li>
+                    </ul>
+                </div>
+
+                <div class="gallery">
+                    <!-- Элемент 1: Picture с WebP + JPEG -->
+                    <div class="gallery__item">
+                        <picture>
+                            <source srcset="../images/photo1.webp" type="image/webp">
+                            <img src="../images/photo1.jpg" 
+                                 alt="Современный интерьер гостиной" 
+                                 class="gallery__image"
+                                 loading="lazy">
+                        </picture>
+                    </div>
+
+                    <!-- Элемент 2: Retina поддержка -->
+                    <div class="gallery__item">
+                        <img src="../images/photo2.jpg" 
+                             srcset="../images/photo2.jpg 1x, ../images/photo2@2x.jpg 2x"
+                             alt="Кухня в индустриальном стиле" 
+                             class="gallery__image"
+                             loading="lazy">
+                    </div>
+
+                    <!-- Элемент 3: Picture с WebP + JPEG -->
+                    <div class="gallery__item">
+                        <picture>
+                            <source srcset="../images/photo3.webp" type="image/webp">
+                            <img src="../images/photo3.jpg" 
+                                 alt="Спальня в скандинавском стиле" 
+                                 class="gallery__image"
+                                 loading="lazy">
+                        </picture>
+                    </div>
+
+                    <!-- Элемент 4: Retina поддержка -->
+                    <div class="gallery__item">
+                        <img src="../images/photo4.jpg" 
+                             srcset="../images/photo4.jpg 1x, ../images/photo4@2x.jpg 2x"
+                             alt="Ванная комната премиум-класса" 
+                             class="gallery__image"
+                             loading="lazy">
+                    </div>
+
+                    <!-- Элемент 5: Picture с WebP + JPEG -->
+                    <div class="gallery__item">
+                        <picture>
+                            <source srcset="../images/photo5.webp" type="image/webp">
+                            <img src="../images/photo5.jpg" 
+                                 alt="Рабочий кабинет с панорамным окном" 
+                                 class="gallery__image"
+                                 loading="lazy">
+                        </picture>
+                    </div>
+
+                    <!-- Элемент 6: Retina поддержка -->
+                    <div class="gallery__item">
+                        <img src="../images/photo6.jpg" 
+                             srcset="../images/photo6.jpg 1x, ../images/photo6@2x.jpg 2x"
+                             alt="Терраса с видом на сад" 
+                             class="gallery__image"
+                             loading="lazy">
+                    </div>
+
+                    <!-- Элемент 7: Picture с WebP + JPEG -->
+                    <div class="gallery__item">
+                        <picture>
+                            <source srcset="../images/photo7.webp" type="image/webp">
+                            <img src="../images/photo7.jpg" 
+                                 alt="Детская комната с игровой зоной" 
+                                 class="gallery__image"
+                                 loading="lazy">
+                        </picture>
+                    </div>
+
+                    <!-- Элемент 8: Retina поддержка -->
+                    <div class="gallery__item">
+                        <img src="../images/photo8.jpg" 
+                             srcset="../images/photo8.jpg 1x, ../images/photo8@2x.jpg 2x"
+                             alt="Гостиная с камином" 
+                             class="gallery__image"
+                             loading="lazy">
+                    </div>
+                </div>
+
+                <div style="text-align: center;">
+                    <a href="../index.html" class="btn">Вернуться на главную</a>
+                </div>
+            </section>
+
+            <!-- Секция 2: Object-fit демонстрация -->
+            <section class="section">
+                <h2 class="section__title">Object-fit свойства</h2>
+                
+                <div class="explanation">
+                    <h3>Что происходит:</h3>
+                    <ul>
+                        <li><strong>cover</strong> - заполняет контейнер, обрезая края</li>
+                        <li><strong>contain</strong> - вписывает полностью, могут быть поля</li>
+                        <li><strong>fill</strong> - растягивает, искажая пропорции</li>
+                    </ul>
+                </div>
+
+                <div class="object-fit-demo">
+                    <div class="object-fit-item">
+                        <img src="../images/square.jpg" alt="Cover пример" class="object-fit-cover">
+                        <span>object-fit: cover</span>
+                    </div>
+                    <div class="object-fit-item">
+                        <img src="../images/square.jpg" alt="Contain пример" class="object-fit-contain">
+                        <span>object-fit: contain</span>
+                    </div>
+                    <div class="object-fit-item">
+                        <img src="../images/square.jpg" alt="Fill пример" class="object-fit-fill">
+                        <span>object-fit: fill</span>
+                    </div>
+                </div>
+            </section>
+        </main>
+
+        <footer class="footer">
+            <p>Измените размер окна браузера чтобы увидеть адаптивность в действии!</p>
+        </footer>
+    </div>
+</body>
+</html>

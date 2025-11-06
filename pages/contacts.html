@@ -2,145 +2,193 @@
 <html lang="ru">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
     <title>Контакты - Калугин Никита</title>
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
     <link rel="stylesheet" href="../style/styles.css">
 </head>
-<body class="bg-dark">
-    <header class="bg-dark border-bottom border-warning">
-        <div class="container py-3">
-            <div class="d-flex align-items-center justify-content-center">
-                <img src="../images/logo.png" alt="Логотип" class="me-3" style="height: 40px;">
-                <h1 class="h3 mb-0 text-white">Калугин Никита</h1>
+<body class="page">
+    <!-- Skip link для доступности -->
+    <a class="skip-link" href="#main">Перейти к основному содержимому</a>
+
+    <header class="header">
+        <div class="container">
+            <div class="header-content">
+                <img src="../images/logo.png" alt="Логотип" class="logo" width="40" height="40">
+                <h1 class="site-title">Калугин Никита</h1>
             </div>
         </div>
     </header>
 
-    <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+    <nav class="nav" aria-label="Основная навигация">
         <div class="container">
-            <a class="navbar-brand fw-bold text-white" href="../index.html">Portfolio</a>
-            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
-                <span class="navbar-toggler-icon"></span>
-            </button>
-            <div class="collapse navbar-collapse" id="navbarNav">
-                <ul class="navbar-nav ms-auto">
-                    <li class="nav-item"><a class="nav-link text-white" href="../index.html">Главная</a></li>
-                    <li class="nav-item"><a class="nav-link text-white" href="projects.html">Проекты</a></li>
-                    <li class="nav-item"><a class="nav-link text-white" href="diary.html">Дневник</a></li>
-                    <li class="nav-item"><a class="nav-link active text-white" href="contacts.html">Контакты</a></li>
+            <div class="nav-content">
+                <a class="nav-brand" href="../index.html">Portfolio</a>
+                <ul class="nav-list">
+                    <li class="nav-item"><a class="nav-link" href="../index.html">Главная</a></li>
+                    <li class="nav-item"><a class="nav-link" href="projects.html">Проекты</a></li>
+                    <li class="nav-item"><a class="nav-link" href="diary.html">Дневник</a></li>
+                    <li class="nav-item"><a class="nav-link active" href="contacts.html" aria-current="page">Контакты</a></li>
                 </ul>
             </div>
         </div>
     </nav>
 
-    <main class="container my-5">
-        <h1 class="text-center mb-5 text-white">Свяжитесь со мной</h1>
-        
-        <div class="row g-4">
-            <div class="col-lg-8 mx-auto">
+    <main id="main" class="main">
+        <div class="container">
+            <h1 class="section-title">Свяжитесь со мной</h1>
+            
+            <div class="contacts-layout">
                 <!-- Contact Form -->
-                <div class="card bg-dark border-warning mb-4">
-                    <div class="card-body">
-                        <h3 class="card-title h4 text-white mb-4">Контактная форма</h3>
+                <section class="contact-form-section" aria-labelledby="form-title">
+                    <h2 id="form-title" class="form-title">Контактная форма</h2>
+                    
+                    <form id="contactForm" class="contact-form" novalidate>
+                        <div class="form-row">
+                            <div class="form-group">
+                                <label for="name" class="form-label">
+                                    Имя <span class="required" aria-hidden="true">*</span>
+                                    <span class="visually-hidden">обязательное поле</span>
+                                </label>
+                                <input type="text" 
+                                       class="form-input" 
+                                       id="name" 
+                                       name="name" 
+                                       required 
+                                       aria-describedby="name-error">
+                                <div id="name-error" class="error-message" role="alert" aria-live="polite"></div>
+                            </div>
+                            
+                            <div class="form-group">
+                                <label for="email" class="form-label">
+                                    Email <span class="required" aria-hidden="true">*</span>
+                                    <span class="visually-hidden">обязательное поле</span>
+                                </label>
+                                <input type="email" 
+                                       class="form-input" 
+                                       id="email" 
+                                       name="email" 
+                                       required 
+                                       aria-describedby="email-error email-hint">
+                                <div id="email-error" class="error-message" role="alert" aria-live="polite"></div>
+                                <div id="email-hint" class="form-hint">Мы пришлём ответ на этот адрес</div>
+                            </div>
+                        </div>
                         
-                        <form id="contactForm">
-                            <div class="row g-3">
-                                <div class="col-md-6">
-                                    <div class="mb-3">
-                                        <label for="name" class="form-label text-light">Имя *</label>
-                                        <input type="text" class="form-control bg-secondary border-warning text-light" id="name" required>
-                                    </div>
-                                </div>
-                                <div class="col-md-6">
-                                    <div class="mb-3">
-                                        <label for="email" class="form-label text-light">Email *</label>
-                                        <input type="email" class="form-control bg-secondary border-warning text-light" id="email" required>
-                                    </div>
-                                </div>
-                            </div>
-                            
-                            <div class="mb-3">
-                                <label for="message" class="form-label text-light">Сообщение *</label>
-                                <textarea class="form-control bg-secondary border-warning text-light" id="message" rows="5" required></textarea>
-                            </div>
-                            
-                            <div class="text-center">
-                                <button type="submit" class="btn btn-warning btn-lg px-5">
-                                    Отправить сообщение
-                                </button>
-                            </div>
-                        </form>
-                    </div>
-                </div>
+                        <div class="form-group">
+                            <label for="subject" class="form-label">Тема сообщения</label>
+                            <select class="form-select" id="subject" name="subject">
+                                <option value="">Выберите тему...</option>
+                                <option value="collaboration">Сотрудничество</option>
+                                <option value="project">Обсуждение проекта</option>
+                                <option value="question">Вопрос по обучению</option>
+                                <option value="other">Другое</option>
+                            </select>
+                        </div>
+                        
+                        <div class="form-group">
+                            <label for="message" class="form-label">
+                                Сообщение <span class="required" aria-hidden="true">*</span>
+                                <span class="visually-hidden">обязательное поле</span>
+                            </label>
+                            <textarea class="form-textarea" 
+                                      id="message" 
+                                      name="message" 
+                                      rows="5" 
+                                      required 
+                                      aria-describedby="message-error"></textarea>
+                            <div id="message-error" class="error-message" role="alert" aria-live="polite"></div>
+                        </div>
+                        
+                        <div class="form-actions">
+                            <button type="submit" class="btn btn-primary btn-large">
+                                Отправить сообщение
+                            </button>
+                        </div>
+                    </form>
+                </section>
 
                 <!-- Contact Information -->
-                <div class="card bg-dark border-info">
-                    <div class="card-body">
-                        <h3 class="card-title h4 text-white mb-4">Контакты</h3>
+                <aside class="contact-info-section" aria-labelledby="contact-info-title">
+                    <h2 id="contact-info-title" class="contact-info-title">Контакты</h2>
+                    
+                    <div class="contact-methods">
+                        <div class="contact-method">
+                            <div class="contact-icon" aria-hidden="true">📧</div>
+                            <div class="contact-details">
+                                <h3 class="contact-method-title">Email</h3>
+                                <a href="mailto:kalugin.n.a@edu.mirea.ru" class="contact-link">
+                                    kalugin.n.a@edu.mirea.ru
+                                </a>
+                            </div>
+                        </div>
                         
-                        <div class="row g-3">
-                            <div class="col-md-6">
-                                <div class="d-flex align-items-center mb-3">
-                                    <div class="bg-primary rounded-circle p-2 me-3">
-                                        <i class="bi bi-envelope-fill text-white"></i>
-                                    </div>
-                                    <div>
-                                        <h6 class="text-warning mb-1">Email</h6>
-                                        <p class="text-light mb-0">kalugin.n.a@edu.mirea.ru</p>
-                                    </div>
-                                </div>
+                        <div class="contact-method">
+                            <div class="contact-icon" aria-hidden="true">💻</div>
+                            <div class="contact-details">
+                                <h3 class="contact-method-title">GitHub</h3>
+                                <a href="https://github.com/welcome2foreverr" class="contact-link" target="_blank" rel="noopener noreferrer">
+                                    github.com/welcome2foreverr
+                                </a>
                             </div>
-                            
-                            <div class="col-md-6">
-                                <div class="d-flex align-items-center mb-3">
-                                    <div class="bg-success rounded-circle p-2 me-3">
-                                        <i class="bi bi-github text-white"></i>
-                                    </div>
-                                    <div>
-                                        <h6 class="text-warning mb-1">GitHub</h6>
-                                        <p class="text-light mb-0">github.com/welcome2foreverr</p>
-                                    </div>
-                                </div>
+                        </div>
+                        
+                        <div class="contact-method">
+                            <div class="contact-icon" aria-hidden="true">📍</div>
+                            <div class="contact-details">
+                                <h3 class="contact-method-title">Местоположение</h3>
+                                <p class="contact-text">Россия, Москва</p>
                             </div>
-                            
-                            <div class="col-md-6">
-                                <div class="d-flex align-items-center mb-3">
-                                    <div class="bg-info rounded-circle p-2 me-3">
-                                        <i class="bi bi-geo-alt-fill text-white"></i>
-                                    </div>
-                                    <div>
-                                        <h6 class="text-warning mb-1">Местоположение</h6>
-                                        <p class="text-light mb-0">Россия, Москва</p>
-                                    </div>
-                                </div>
-                            </div>
-                            
-                            <div class="col-md-6">
-                                <div class="d-flex align-items-center mb-3">
-                                    <div class="bg-warning rounded-circle p-2 me-3">
-                                        <i class="bi bi-telegram text-dark"></i>
-                                    </div>
-                                    <div>
-                                        <h6 class="text-warning mb-1">Telegram</h6>
-                                        <p class="text-light mb-0">@psych0somatics</p>
-                                    </div>
-                                </div>
+                        </div>
+                        
+                        <div class="contact-method">
+                            <div class="contact-icon" aria-hidden="true">✈️</div>
+                            <div class="contact-details">
+                                <h3 class="contact-method-title">Telegram</h3>
+                                <a href="https://t.me/psych0somatics" class="contact-link" target="_blank" rel="noopener noreferrer">
+                                    @psych0somatics
+                                </a>
                             </div>
                         </div>
                     </div>
-                </div>
+                    
+                    <!-- Additional Info -->
+                    <div class="contact-additional">
+                        <h3 class="additional-title">Дополнительная информация</h3>
+                        <p class="additional-text">
+                            Всегда открыт для новых проектов и сотрудничества. 
+                            Отвечаю на сообщения в течение 24 часов.
+                        </p>
+                    </div>
+                </aside>
             </div>
         </div>
     </main>
 
-    <footer class="bg-dark text-warning text-center py-3 border-top border-warning mt-5">
+    <!-- Success Modal -->
+    <div id="successModal" class="modal" aria-hidden="true" role="dialog" aria-labelledby="success-title">
+        <div class="modal-overlay" id="successOverlay">
+            <div class="modal-content success-modal" role="document">
+                <div class="modal-header">
+                    <h2 id="success-title" class="modal-title">Сообщение отправлено!</h2>
+                    <button class="modal-close" id="successClose" aria-label="Закрыть уведомление">
+                        ×
+                    </button>
+                </div>
+                <div class="modal-body">
+                    <div class="success-icon">✅</div>
+                    <p>Спасибо за ваше сообщение! Я свяжусь с вами в ближайшее время.</p>
+                    <button class="btn btn-primary" id="successOk">OK</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <footer class="footer">
         <div class="container">
-            <p class="mb-0">© 2025 Контакты</p>
+            <p>&copy; 2025 Калугин Никита. Студент РТУ МИРЭА</p>
         </div>
     </footer>
 
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
-    <script src="../js/contact-form.js"></script>
+    <script src="../js/contacts.js"></script>
 </body>
 </html>

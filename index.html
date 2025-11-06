@@ -2,155 +2,140 @@
 <html lang="ru">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
     <title>Портфолио - Калугин Никита</title>
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
     <link rel="stylesheet" href="style/styles.css">
 </head>
-<body class="bg-dark">
-    <header class="bg-dark border-bottom border-warning">
-        <div class="container py-3">
-            <div class="d-flex align-items-center justify-content-center">
-                <img src="images/logo.png" alt="Логотип" class="me-3" style="height: 40px;">
-                <h1 class="h3 mb-0 text-white">Калугин Никита</h1>
+<body class="page">
+    <!-- Skip link для доступности -->
+    <a class="skip-link" href="#main">Перейти к основному содержимому</a>
+
+    <header class="header">
+        <div class="container">
+            <div class="header-content">
+                <img src="images/logo.png" alt="Логотип" class="logo" width="40" height="40">
+                <h1 class="site-title">Калугин Никита</h1>
             </div>
         </div>
     </header>
 
-    <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+    <nav class="nav" aria-label="Основная навигация">
         <div class="container">
-            <a class="navbar-brand fw-bold text-white" href="index.html">Portfolio</a>
-            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
-                <span class="navbar-toggler-icon"></span>
-            </button>
-            <div class="collapse navbar-collapse" id="navbarNav">
-                <ul class="navbar-nav ms-auto">
-                    <li class="nav-item"><a class="nav-link active text-white" href="index.html">Главная</a></li>
-                    <li class="nav-item"><a class="nav-link text-white" href="pages/projects.html">Проекты</a></li>
-                    <li class="nav-item"><a class="nav-link text-white" href="pages/diary.html">Дневник</a></li>
-                    <li class="nav-item"><a class="nav-link text-white" href="pages/contacts.html">Контакты</a></li>
+            <div class="nav-content">
+                <a class="nav-brand" href="index.html">Portfolio</a>
+                <ul class="nav-list">
+                    <li class="nav-item"><a class="nav-link active" href="index.html" aria-current="page">Главная</a></li>
+                    <li class="nav-item"><a class="nav-link" href="pages/projects.html">Проекты</a></li>
+                    <li class="nav-item"><a class="nav-link" href="pages/diary.html">Дневник</a></li>
+                    <li class="nav-item"><a class="nav-link" href="pages/contacts.html">Контакты</a></li>
+                    <li class="nav-item"><a class="nav-link" href="pages/gallery.html">Галерея</a></li>
                 </ul>
             </div>
         </div>
     </nav>
 
-    <main class="container my-5">
-        <!-- Hero Section -->
-        <section class="text-center mb-5">
-            <div class="row justify-content-center">
-                <div class="col-lg-8">
-                    <h1 class="display-4 mb-4 text-white">Привет! Я студент</h1>
-                    <p class="lead text-warning mb-4">Группа ЭФБО-12-24<br>Увлекаюсь веб-разработкой</p>
-                    <a href="assets/resume.pdf" class="btn btn-warning btn-lg px-4" download>
-                        <i class="bi bi-download me-2"></i>Скачать резюме
+    <main id="main" class="main">
+        <div class="container">
+            <!-- Hero Section -->
+            <section class="hero" aria-labelledby="hero-title">
+                <div class="hero-content">
+                    <h1 id="hero-title" class="hero-title">Привет! Я студент</h1>
+                    <p class="hero-subtitle">Группа ЭФБО-12-24<br>Увлекаюсь веб-разработкой</p>
+                    <a href="assets/resume.pdf" class="btn btn-primary" download>
+                        Скачать резюме
                     </a>
                 </div>
-            </div>
-        </section>
+            </section>
 
-        <!-- Photo Section -->
-        <section class="text-center mb-5">
-            <img src="images/photo.jpg" alt="Фото студента" class="img-fluid rounded-circle border border-3 border-warning" style="width: 200px; height: 200px; object-fit: cover;">
-        </section>
 
-        <!-- Skills Section -->
-        <section class="mb-5">
-            <h2 class="h3 text-center mb-4 text-white">Мои навыки</h2>
-            <div class="row g-4">
-                <div class="col-md-6">
-                    <div class="skill-item">
-                        <div class="d-flex justify-content-between mb-2">
-                            <span class="text-light">HTML/CSS</span>
-                            <span class="text-warning">90%</span>
+            <!-- Skills Section -->
+            <section class="skills-section" aria-labelledby="skills-title">
+                <h2 id="skills-title" class="section-title">Мои навыки</h2>
+                <div class="skills-grid">
+                    <div class="skill-card">
+                        <h3 class="skill-name">HTML/CSS</h3>
+                        <div class="skill-level">
+                            <div class="skill-progress" style="--progress: 90%">
+                                <span class="skill-percent">90%</span>
+                            </div>
                         </div>
-                        <div class="progress" style="height: 8px;">
-                            <div class="progress-bar bg-warning" style="width: 90%"></div>
+                    </div>
+                    <div class="skill-card">
+                        <h3 class="skill-name">JavaScript</h3>
+                        <div class="skill-level">
+                            <div class="skill-progress" style="--progress: 80%">
+                                <span class="skill-percent">80%</span>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="skill-card">
+                        <h3 class="skill-name">Bootstrap</h3>
+                        <div class="skill-level">
+                            <div class="skill-progress" style="--progress: 85%">
+                                <span class="skill-percent">85%</span>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="skill-card">
+                        <h3 class="skill-name">React</h3>
+                        <div class="skill-level">
+                            <div class="skill-progress" style="--progress: 60%">
+                                <span class="skill-percent">60%</span>
+                            </div>
                         </div>
                     </div>
                 </div>
-                <div class="col-md-6">
-                    <div class="skill-item">
-                        <div class="d-flex justify-content-between mb-2">
-                            <span class="text-light">JavaScript</span>
-                            <span class="text-warning">80%</span>
-                        </div>
-                        <div class="progress" style="height: 8px;">
-                            <div class="progress-bar bg-warning" style="width: 80%"></div>
-                        </div>
-                    </div>
-                </div>
-                <div class="col-md-6">
-                    <div class="skill-item">
-                        <div class="d-flex justify-content-between mb-2">
-                            <span class="text-light">Bootstrap</span>
-                            <span class="text-warning">85%</span>
-                        </div>
-                        <div class="progress" style="height: 8px;">
-                            <div class="progress-bar bg-warning" style="width: 85%"></div>
-                        </div>
-                    </div>
-                </div>
-                <div class="col-md-6">
-                    <div class="skill-item">
-                        <div class="d-flex justify-content-between mb-2">
-                            <span class="text-light">React</span>
-                            <span class="text-warning">60%</span>
-                        </div>
-                        <div class="progress" style="height: 8px;">
-                            <div class="progress-bar bg-warning" style="width: 60%"></div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </section>
+            </section>
 
-        <!-- Best Projects Section -->
-        <section class="mb-5">
-            <h2 class="h3 text-center mb-4 text-white">Лучшие проекты</h2>
-            <div class="row g-4">
-                <div class="col-md-4">
-                    <div class="card bg-dark border-info h-100 text-center">
-                        <div class="card-body">
-                            <div class="project-icon mb-3">
-                                <i class="bi bi-laptop text-info" style="font-size: 3rem;"></i>
-                            </div>
-                            <h3 class="card-title h5 text-white">Личный сайт</h3>
-                            <p class="card-text text-light">Адаптивный сайт-портфолио на HTML/CSS</p>
+            <!-- Projects Preview Section -->
+            <section class="projects-preview" aria-labelledby="projects-title">
+                <h2 id="projects-title" class="section-title">Лучшие проекты</h2>
+                <div class="projects-preview__grid">
+                    <article class="project-card">
+                        <div class="project-card__icon">💻</div>
+                        <h3 class="project-card__title">Личный сайт</h3>
+                        <p class="project-card__description">Адаптивный сайт-портфолио на HTML/CSS с современными возможностями CSS</p>
+                        <div class="project-card__tags">
+                            <span class="tag">HTML5</span>
+                            <span class="tag">CSS3</span>
+                            <span class="tag">Адаптивность</span>
                         </div>
-                    </div>
-                </div>
-                <div class="col-md-4">
-                    <div class="card bg-dark border-success h-100 text-center">
-                        <div class="card-body">
-                            <div class="project-icon mb-3">
-                                <i class="bi bi-check2-square text-success" style="font-size: 3rem;"></i>
-                            </div>
-                            <h3 class="card-title h5 text-white">Todo App</h3>
-                            <p class="card-text text-light">Приложение для управления задачами на JavaScript</p>
+                    </article>
+                    
+                    <article class="project-card">
+                        <div class="project-card__icon">✅</div>
+                        <h3 class="project-card__title">Todo App</h3>
+                        <p class="project-card__description">Приложение для управления задачами на чистом JavaScript</p>
+                        <div class="project-card__tags">
+                            <span class="tag">JavaScript</span>
+                            <span class="tag">Local Storage</span>
                         </div>
-                    </div>
-                </div>
-                <div class="col-md-4">
-                    <div class="card bg-dark border-warning h-100 text-center">
-                        <div class="card-body">
-                            <div class="project-icon mb-3">
-                                <i class="bi bi-cart text-warning" style="font-size: 3rem;"></i>
-                            </div>
-                            <h3 class="card-title h5 text-white">Интернет-магазин</h3>
-                            <p class="card-text text-light">E-commerce проект на React</p>
+                    </article>
+                    
+                    <article class="project-card">
+                        <div class="project-card__icon">🛒</div>
+                        <h3 class="project-card__title">Интернет-магазин</h3>
+                        <p class="project-card__description">E-commerce проект на React с современным UI/UX</p>
+                        <div class="project-card__tags">
+                            <span class="tag">React</span>
+                            <span class="tag">API</span>
+                            <span class="tag">Context</span>
                         </div>
-                    </div>
+                    </article>
                 </div>
-            </div>
-        </section>
+                <div class="text-center">
+                    <a href="pages/projects.html" class="btn btn-secondary">Все проекты</a>
+                </div>
+            </section>
+        </div>
     </main>
 
-    <footer class="bg-dark text-warning text-center py-3 border-top border-warning">
+    <footer class="footer">
         <div class="container">
-            <p class="mb-0">© 2025 Контакты</p>
+            <p>&copy; 2025 Калугин Никита. Студент РТУ МИРЭА</p>
         </div>
     </footer>
 
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="js/main.js"></script>
 </body>
 </html>
