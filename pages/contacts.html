@@ -2,107 +2,579 @@
 <html lang="ru">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Контакты - Калугин Никита</title>
     <link rel="stylesheet" href="../style/styles.css">
+    <style>
+        /* Дополнительные стили для доступности WCAG */
+        .visually-hidden {
+            position: absolute;
+            width: 1px;
+            height: 1px;
+            padding: 0;
+            margin: -1px;
+            overflow: hidden;
+            clip: rect(0, 0, 0, 0);
+            white-space: nowrap;
+            border: 0;
+        }
+
+        .required {
+            color: #b91c1c;
+        }
+
+        .form-label--required::after {
+            content: " *";
+            color: #b91c1c;
+            font-weight: bold;
+        }
+
+        .error-message {
+            color: #b91c1c;
+            font-size: 0.875rem;
+            margin-top: 0.25rem;
+            display: none;
+            font-weight: 500;
+        }
+
+        .form-hint {
+            color: #475569;
+            font-size: 0.875rem;
+            margin-top: 0.25rem;
+            line-height: 1.4;
+        }
+
+        .form-input:invalid,
+        .form-textarea:invalid,
+        .form-select:invalid {
+            border-color: #b91c1c;
+            border-width: 2px;
+        }
+
+        .form-input:invalid + .error-message,
+        .form-textarea:invalid + .error-message {
+            display: block;
+        }
+
+        /* Fieldset стили - WCAG compliant */
+        .form-fieldset {
+            border: 2px solid #334155;
+            border-radius: 8px;
+            padding: 1.5rem;
+            margin: 2rem 0;
+            background: #f8fafc;
+            position: relative;
+        }
+
+        .form-legend {
+            font-weight: 600;
+            color: #1e293b;
+            padding: 0.5rem 1rem;
+            background: #ffffff;
+            border: 2px solid #334155;
+            border-radius: 6px;
+            margin-left: 1rem;
+            position: absolute;
+            top: -20px;
+            left: 10px;
+            font-size: 1rem;
+            font-weight: 700;
+        }
+
+        /* Checkbox стили - WCAG compliant */
+        .checkbox-group {
+            display: flex;
+            flex-direction: column;
+            gap: 1rem;
+        }
+
+        .checkbox-label {
+            display: flex;
+            align-items: flex-start;
+            gap: 0.75rem;
+            cursor: pointer;
+            padding: 1rem;
+            background: #ffffff;
+            border: 2px solid #475569;
+            border-radius: 8px;
+            transition: all 0.3s ease;
+            margin: 0;
+        }
+
+        .checkbox-label:hover {
+            background: #f1f5f9;
+            border-color: #1d4ed8;
+        }
+
+        .checkbox-input {
+            width: 1.5rem;
+            height: 1.5rem;
+            margin: 0.125rem 0 0 0;
+            accent-color: #1d4ed8;
+        }
+
+        .checkbox-text {
+            color: #1e293b;
+            font-weight: 600;
+            margin: 0;
+            line-height: 1.5;
+            font-size: 1rem;
+        }
+
+        /* Стили для фокуса - WCAG compliant */
+        .form-input:focus,
+        .form-textarea:focus,
+        .form-select:focus,
+        .btn:focus,
+        .nav-link:focus,
+        .contact-link:focus,
+        .checkbox-input:focus,
+        .modal-close:focus {
+            outline: 3px solid #1d4ed8;
+            outline-offset: 2px;
+        }
+
+        /* Skip link - WCAG compliant */
+        .skip-link {
+            position: absolute;
+            top: -40px;
+            left: 6px;
+            background: #1d4ed8;
+            color: white;
+            padding: 12px 16px;
+            text-decoration: none;
+            border-radius: 4px;
+            z-index: 1000;
+            transition: top 0.3s;
+            font-weight: 600;
+            font-size: 1rem;
+        }
+
+        .skip-link:focus {
+            top: 6px;
+        }
+
+        /* Модальное окно - WCAG compliant */
+        .modal {
+            display: none;
+            position: fixed;
+            z-index: 1000;
+            left: 0;
+            top: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(0, 0, 0, 0.7);
+        }
+
+        .modal-content {
+            background-color: #ffffff;
+            margin: 10% auto;
+            padding: 2rem;
+            border-radius: 12px;
+            max-width: 500px;
+            position: relative;
+            box-shadow: 0 20px 25px rgba(0, 0, 0, 0.3);
+            border: 2px solid #334155;
+        }
+
+        .modal.show {
+            display: block;
+        }
+
+        .modal-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 1.5rem;
+            padding-bottom: 1rem;
+            border-bottom: 2px solid #e2e8f0;
+        }
+
+        .modal-title {
+            margin: 0;
+            color: #1e293b;
+            font-size: 1.5rem;
+            font-weight: 700;
+        }
+
+        .modal-close {
+            background: none;
+            border: none;
+            font-size: 2rem;
+            cursor: pointer;
+            padding: 0.5rem;
+            width: 40px;
+            height: 40px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            border-radius: 6px;
+            color: #475569;
+            font-weight: bold;
+        }
+
+        .modal-close:hover,
+        .modal-close:focus {
+            background: #f1f5f9;
+            color: #1e293b;
+        }
+
+        .modal-body {
+            text-align: center;
+        }
+
+        .success-icon {
+            font-size: 4rem;
+            margin-bottom: 1.5rem;
+        }
+
+        .modal-actions {
+            margin-top: 2rem;
+        }
+
+        /* Контактная информация - WCAG compliant */
+        .contact-method {
+            background: #ffffff;
+            border: 2px solid #475569;
+            border-radius: 12px;
+            padding: 1.5rem;
+            margin-bottom: 1.5rem;
+            transition: all 0.3s ease;
+        }
+
+        .contact-method:hover {
+            box-shadow: 0 8px 12px rgba(0, 0, 0, 0.15);
+            transform: translateY(-2px);
+            border-color: #1d4ed8;
+        }
+
+        .contact-method-title {
+            color: #1e293b;
+            margin-bottom: 0.75rem;
+            font-size: 1.25rem;
+            font-weight: 700;
+        }
+
+        .contact-link {
+            color: #1d4ed8;
+            text-decoration: underline;
+            font-weight: 600;
+            font-size: 1.1rem;
+        }
+
+        .contact-link:hover,
+        .contact-link:focus {
+            color: #1e40af;
+            text-decoration: none;
+        }
+
+        .contact-description {
+            color: #475569;
+            font-size: 1rem;
+            margin-top: 0.75rem;
+            line-height: 1.5;
+        }
+
+        /* Адаптивность */
+        @media (max-width: 768px) {
+            .contacts-layout {
+                grid-template-columns: 1fr;
+                gap: 2rem;
+            }
+            
+            .form-fieldset {
+                padding: 1.25rem;
+                margin: 1.5rem 0;
+            }
+            
+            .form-legend {
+                position: static;
+                margin: 0 0 1rem 0;
+                display: inline-block;
+                top: auto;
+                left: auto;
+            }
+
+            .form-row {
+                grid-template-columns: 1fr !important;
+                gap: 1rem !important;
+            }
+        }
+
+        @media (max-width: 480px) {
+            .contact-form-section,
+            .contact-info-section {
+                padding: 1.5rem;
+            }
+            
+            .modal-content {
+                margin: 5% auto;
+                padding: 1.5rem;
+            }
+        }
+
+        /* Основные контейнеры - WCAG compliant */
+        .contact-form-section,
+        .contact-info-section {
+            background: #ffffff;
+            border-radius: 12px;
+            padding: 2.5rem;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+            margin-bottom: 2rem;
+            border: 1px solid #e2e8f0;
+        }
+
+        .contact-info-title,
+        .form-title {
+            color: #1e293b;
+            margin-bottom: 2rem;
+            padding-bottom: 1rem;
+            border-bottom: 3px solid #334155;
+            font-size: 1.75rem;
+            font-weight: 700;
+        }
+
+        /* Улучшенная типографика для лучшей читаемости */
+        body {
+            line-height: 1.6;
+            color: #1e293b;
+            font-family: 'Segoe UI', system-ui, sans-serif;
+        }
+
+        .form-label {
+            font-weight: 600;
+            color: #1e293b;
+            font-size: 1.1rem;
+            margin-bottom: 0.5rem;
+            display: block;
+        }
+
+        .form-input,
+        .form-textarea,
+        .form-select {
+            font-size: 1.1rem;
+            padding: 0.875rem;
+            border: 2px solid #475569;
+            border-radius: 6px;
+            background: #ffffff;
+            transition: all 0.3s ease;
+        }
+
+        .form-input:focus,
+        .form-textarea:focus,
+        .form-select:focus {
+            border-color: #1d4ed8;
+            box-shadow: 0 0 0 3px rgba(29, 78, 216, 0.1);
+        }
+
+        /* Кнопки - WCAG compliant */
+        .btn {
+            font-weight: 600;
+            font-size: 1.1rem;
+            padding: 1rem 2rem;
+            border-radius: 8px;
+            transition: all 0.3s ease;
+        }
+
+        .btn-primary {
+            background: #1d4ed8;
+            color: #ffffff;
+        }
+
+        .btn-primary:hover,
+        .btn-primary:focus {
+            background: #1e40af;
+            transform: translateY(-2px);
+        }
+
+        /* High contrast support */
+        @media (prefers-contrast: high) {
+            .form-fieldset {
+                border-color: #000000;
+                background: #ffffff;
+            }
+            
+            .form-legend {
+                border-color: #000000;
+                background: #ffffff;
+                color: #000000;
+            }
+            
+            .checkbox-label {
+                border-color: #000000;
+                background: #ffffff;
+            }
+            
+            .contact-method {
+                border-color: #000000;
+                background: #ffffff;
+            }
+        }
+
+        /* Reduced motion support */
+        @media (prefers-reduced-motion: reduce) {
+            * {
+                transition: none !important;
+                animation: none !important;
+            }
+            
+            .checkbox-label:hover,
+            .contact-method:hover,
+            .btn-primary:hover {
+                transform: none;
+            }
+        }
+    </style>
 </head>
 <body class="page">
     <!-- Skip link для доступности -->
     <a class="skip-link" href="#main">Перейти к основному содержимому</a>
 
-    <header class="header">
+    <header class="header" role="banner">
         <div class="container">
             <div class="header-content">
-                <img src="../images/logo.png" alt="Логотип" class="logo" width="40" height="40">
+                <img src="../images/logo.png" alt="Логотип портфолио Калугина Никиты" class="logo" width="50" height="50">
                 <h1 class="site-title">Калугин Никита</h1>
             </div>
         </div>
     </header>
 
-    <nav class="nav" aria-label="Основная навигация">
+    <nav class="nav" aria-label="Основная навигация" role="navigation">
         <div class="container">
             <div class="nav-content">
                 <a class="nav-brand" href="../index.html">Portfolio</a>
-                <ul class="nav-list">
-                    <li class="nav-item"><a class="nav-link" href="../index.html">Главная</a></li>
-                    <li class="nav-item"><a class="nav-link" href="projects.html">Проекты</a></li>
-                    <li class="nav-item"><a class="nav-link" href="diary.html">Дневник</a></li>
-                    <li class="nav-item"><a class="nav-link active" href="contacts.html" aria-current="page">Контакты</a></li>
+                <ul class="nav-list" role="menubar">
+                    <li class="nav-item" role="none"><a class="nav-link" href="../index.html" role="menuitem">Главная</a></li>
+                    <li class="nav-item" role="none"><a class="nav-link" href="projects.html" role="menuitem">Проекты</a></li>
+                    <li class="nav-item" role="none"><a class="nav-link" href="diary.html" role="menuitem">Дневник</a></li>
+                    <li class="nav-item" role="none"><a class="nav-link active" href="contacts.html" aria-current="page" role="menuitem">Контакты</a></li>
                 </ul>
             </div>
         </div>
     </nav>
 
-    <main id="main" class="main">
+    <main id="main" class="main" role="main">
         <div class="container">
             <h1 class="section-title">Свяжитесь со мной</h1>
             
-            <div class="contacts-layout">
+            <div class="contacts-layout" style="display: grid; grid-template-columns: 1fr 1fr; gap: 3rem;">
                 <!-- Contact Form -->
                 <section class="contact-form-section" aria-labelledby="form-title">
                     <h2 id="form-title" class="form-title">Контактная форма</h2>
                     
                     <form id="contactForm" class="contact-form" novalidate>
-                        <div class="form-row">
+                        <fieldset class="form-fieldset">
+                            <legend class="form-legend">Персональная информация</legend>
+                            
+                            <div class="form-row" style="display: grid; grid-template-columns: 1fr 1fr; gap: 1.5rem;">
+                                <div class="form-group">
+                                    <label for="name" class="form-label form-label--required">
+                                        Имя
+                                    </label>
+                                    <input type="text" 
+                                           class="form-input" 
+                                           id="name" 
+                                           name="name" 
+                                           required 
+                                           aria-required="true"
+                                           aria-describedby="name-error name-hint"
+                                           placeholder="Введите ваше имя"
+                                           style="width: 100%; padding: 0.875rem; border: 2px solid #475569; border-radius: 6px; font-size: 1.1rem;">
+                                    <div id="name-hint" class="form-hint">Можно использовать русские или английские буквы</div>
+                                    <div id="name-error" class="error-message" role="alert" aria-live="polite">Пожалуйста, введите ваше имя</div>
+                                </div>
+                                
+                                <div class="form-group">
+                                    <label for="email" class="form-label form-label--required">
+                                        Email
+                                    </label>
+                                    <input type="email" 
+                                           class="form-input" 
+                                           id="email" 
+                                           name="email" 
+                                           required 
+                                           aria-required="true"
+                                           aria-describedby="email-error email-hint"
+                                           placeholder="example@mail.ru"
+                                           style="width: 100%; padding: 0.875rem; border: 2px solid #475569; border-radius: 6px; font-size: 1.1rem;">
+                                    <div id="email-hint" class="form-hint">Мы пришлём ответ на этот адрес</div>
+                                    <div id="email-error" class="error-message" role="alert" aria-live="polite">Пожалуйста, введите корректный email</div>
+                                </div>
+                            </div>
+                        </fieldset>
+
+                        <fieldset class="form-fieldset">
+                            <legend class="form-legend">Детали сообщения</legend>
+                            
                             <div class="form-group">
-                                <label for="name" class="form-label">
-                                    Имя <span class="required" aria-hidden="true">*</span>
-                                    <span class="visually-hidden">обязательное поле</span>
-                                </label>
-                                <input type="text" 
-                                       class="form-input" 
-                                       id="name" 
-                                       name="name" 
-                                       required 
-                                       aria-describedby="name-error">
-                                <div id="name-error" class="error-message" role="alert" aria-live="polite"></div>
+                                <label for="subject" class="form-label">Тема сообщения</label>
+                                <select class="form-select" id="subject" name="subject" aria-describedby="subject-hint"
+                                        style="width: 100%; padding: 0.875rem; border: 2px solid #475569; border-radius: 6px; font-size: 1.1rem;">
+                                    <option value="">Выберите тему...</option>
+                                    <option value="collaboration">Сотрудничество</option>
+                                    <option value="project">Обсуждение проекта</option>
+                                    <option value="question">Вопрос по обучению</option>
+                                    <option value="other">Другое</option>
+                                </select>
+                                <div id="subject-hint" class="form-hint">Выберите наиболее подходящую тему</div>
                             </div>
                             
                             <div class="form-group">
-                                <label for="email" class="form-label">
-                                    Email <span class="required" aria-hidden="true">*</span>
-                                    <span class="visually-hidden">обязательное поле</span>
+                                <label for="message" class="form-label form-label--required">
+                                    Сообщение
                                 </label>
-                                <input type="email" 
-                                       class="form-input" 
-                                       id="email" 
-                                       name="email" 
-                                       required 
-                                       aria-describedby="email-error email-hint">
-                                <div id="email-error" class="error-message" role="alert" aria-live="polite"></div>
-                                <div id="email-hint" class="form-hint">Мы пришлём ответ на этот адрес</div>
+                                <textarea class="form-textarea" 
+                                          id="message" 
+                                          name="message" 
+                                          rows="6" 
+                                          required 
+                                          aria-required="true"
+                                          aria-describedby="message-error message-hint"
+                                          placeholder="Опишите ваше предложение или вопрос..."
+                                          style="width: 100%; padding: 0.875rem; border: 2px solid #475569; border-radius: 6px; font-size: 1.1rem; resize: vertical;"></textarea>
+                                <div id="message-hint" class="form-hint">Минимум 10 символов</div>
+                                <div id="message-error" class="error-message" role="alert" aria-live="polite">Пожалуйста, введите сообщение</div>
                             </div>
-                        </div>
+                        </fieldset>
+
+                        <fieldset class="form-fieldset">
+                            <legend class="form-legend">Дополнительные настройки</legend>
+                            
+                            <div class="form-group">
+                                <div class="checkbox-group">
+                                    <label class="checkbox-label">
+                                        <input type="checkbox" 
+                                               class="checkbox-input" 
+                                               name="newsletter" 
+                                               value="yes"
+                                               aria-describedby="newsletter-hint">
+                                        <span class="checkbox-text">Подписаться на рассылку о новых проектах</span>
+                                    </label>
+                                    <div id="newsletter-hint" class="form-hint">Будем присылать не более 1 письма в месяц</div>
+                                </div>
+                            </div>
+
+                            <div class="form-group">
+                                <div class="checkbox-group">
+                                    <label class="checkbox-label">
+                                        <input type="checkbox" 
+                                               class="checkbox-input" 
+                                               name="urgent" 
+                                               value="yes"
+                                               aria-describedby="urgent-hint">
+                                        <span class="checkbox-text">Срочный вопрос</span>
+                                    </label>
+                                    <div id="urgent-hint" class="form-hint">Отметьте если нужен быстрый ответ</div>
+                                </div>
+                            </div>
+                        </fieldset>
                         
-                        <div class="form-group">
-                            <label for="subject" class="form-label">Тема сообщения</label>
-                            <select class="form-select" id="subject" name="subject">
-                                <option value="">Выберите тему...</option>
-                                <option value="collaboration">Сотрудничество</option>
-                                <option value="project">Обсуждение проекта</option>
-                                <option value="question">Вопрос по обучению</option>
-                                <option value="other">Другое</option>
-                            </select>
-                        </div>
-                        
-                        <div class="form-group">
-                            <label for="message" class="form-label">
-                                Сообщение <span class="required" aria-hidden="true">*</span>
-                                <span class="visually-hidden">обязательное поле</span>
-                            </label>
-                            <textarea class="form-textarea" 
-                                      id="message" 
-                                      name="message" 
-                                      rows="5" 
-                                      required 
-                                      aria-describedby="message-error"></textarea>
-                            <div id="message-error" class="error-message" role="alert" aria-live="polite"></div>
-                        </div>
-                        
-                        <div class="form-actions">
-                            <button type="submit" class="btn btn-primary btn-large">
+                        <div class="form-actions" style="margin-top: 2.5rem;">
+                            <button type="submit" class="btn btn-primary btn-large" aria-describedby="submit-hint"
+                                    style="background: #1d4ed8; color: white; padding: 1rem 2rem; border: none; border-radius: 8px; cursor: pointer; font-size: 1.1rem; font-weight: 600;">
                                 Отправить сообщение
                             </button>
+                            <div id="submit-hint" class="form-hint">После отправки вы получите подтверждение</div>
                         </div>
                     </form>
                 </section>
@@ -111,50 +583,54 @@
                 <aside class="contact-info-section" aria-labelledby="contact-info-title">
                     <h2 id="contact-info-title" class="contact-info-title">Контакты</h2>
                     
-                    <div class="contact-methods">
-                        <div class="contact-method">
+                    <div class="contact-methods" role="list">
+                        <div class="contact-method" role="listitem">
                             <div class="contact-icon" aria-hidden="true">📧</div>
                             <div class="contact-details">
                                 <h3 class="contact-method-title">Email</h3>
                                 <a href="mailto:kalugin.n.a@edu.mirea.ru" class="contact-link">
                                     kalugin.n.a@edu.mirea.ru
                                 </a>
+                                <p class="contact-description">Основной способ связи</p>
                             </div>
                         </div>
                         
-                        <div class="contact-method">
+                        <div class="contact-method" role="listitem">
                             <div class="contact-icon" aria-hidden="true">💻</div>
                             <div class="contact-details">
                                 <h3 class="contact-method-title">GitHub</h3>
                                 <a href="https://github.com/welcome2foreverr" class="contact-link" target="_blank" rel="noopener noreferrer">
                                     github.com/welcome2foreverr
                                 </a>
+                                <p class="contact-description">Мои проекты и код</p>
                             </div>
                         </div>
                         
-                        <div class="contact-method">
+                        <div class="contact-method" role="listitem">
                             <div class="contact-icon" aria-hidden="true">📍</div>
                             <div class="contact-details">
                                 <h3 class="contact-method-title">Местоположение</h3>
-                                <p class="contact-text">Россия, Москва</p>
+                                <p class="contact-text" style="color: #1e293b; font-weight: 600; font-size: 1.1rem;">Россия, Москва</p>
+                                <p class="contact-description">РТУ МИРЭА</p>
                             </div>
                         </div>
                         
-                        <div class="contact-method">
+                        <div class="contact-method" role="listitem">
                             <div class="contact-icon" aria-hidden="true">✈️</div>
                             <div class="contact-details">
                                 <h3 class="contact-method-title">Telegram</h3>
                                 <a href="https://t.me/psych0somatics" class="contact-link" target="_blank" rel="noopener noreferrer">
                                     @psych0somatics
                                 </a>
+                                <p class="contact-description">Быстрый способ связи</p>
                             </div>
                         </div>
                     </div>
                     
                     <!-- Additional Info -->
-                    <div class="contact-additional">
-                        <h3 class="additional-title">Дополнительная информация</h3>
-                        <p class="additional-text">
+                    <div class="contact-additional" style="margin-top: 2.5rem; padding: 1.5rem; background: #f8fafc; border-radius: 8px; border: 2px solid #e2e8f0;">
+                        <h3 class="additional-title" style="color: #1e293b; margin-bottom: 1rem; font-size: 1.25rem; font-weight: 700;">Дополнительная информация</h3>
+                        <p class="additional-text" style="color: #475569; line-height: 1.6; font-size: 1.1rem;">
                             Всегда открыт для новых проектов и сотрудничества. 
                             Отвечаю на сообщения в течение 24 часов.
                         </p>
@@ -165,9 +641,9 @@
     </main>
 
     <!-- Success Modal -->
-    <div id="successModal" class="modal" aria-hidden="true" role="dialog" aria-labelledby="success-title">
-        <div class="modal-overlay" id="successOverlay">
-            <div class="modal-content success-modal" role="document">
+    <div id="successModal" class="modal" role="dialog" aria-labelledby="success-title" aria-modal="true" aria-hidden="true">
+        <div class="modal-overlay">
+            <div class="modal-content success-modal">
                 <div class="modal-header">
                     <h2 id="success-title" class="modal-title">Сообщение отправлено!</h2>
                     <button class="modal-close" id="successClose" aria-label="Закрыть уведомление">
@@ -175,20 +651,138 @@
                     </button>
                 </div>
                 <div class="modal-body">
-                    <div class="success-icon">✅</div>
-                    <p>Спасибо за ваше сообщение! Я свяжусь с вами в ближайшее время.</p>
-                    <button class="btn btn-primary" id="successOk">OK</button>
+                    <div class="success-icon" aria-hidden="true">✅</div>
+                    <p style="margin: 1.5rem 0; color: #1e293b; font-size: 1.1rem; line-height: 1.6;">Спасибо за ваше сообщение! Я свяжусь с вами в ближайшее время.</p>
+                    <div class="modal-actions">
+                        <button class="btn btn-primary" id="successOk"
+                                style="background: #1d4ed8; color: white; padding: 1rem 2rem; border: none; border-radius: 8px; cursor: pointer; font-size: 1.1rem; font-weight: 600;">
+                            OK
+                        </button>
+                    </div>
                 </div>
             </div>
         </div>
     </div>
 
-    <footer class="footer">
+    <footer class="footer" role="contentinfo" style="background: #1e293b; color: white; padding: 2.5rem 0; margin-top: 4rem;">
         <div class="container">
-            <p>&copy; 2025 Калугин Никита. Студент РТУ МИРЭА</p>
+            <p style="text-align: center; margin: 0; font-size: 1.1rem; font-weight: 500;">&copy; 2025 Калугин Никита. Студент РТУ МИРЭА</p>
         </div>
     </footer>
 
-    <script src="../js/contacts.js"></script>
+    <script>
+        // JavaScript для доступности WCAG
+        document.addEventListener('DOMContentLoaded', function() {
+            const form = document.getElementById('contactForm');
+            const modal = document.getElementById('successModal');
+            const closeButtons = document.querySelectorAll('.modal-close, #successOk');
+            const firstInput = form.querySelector('input, select, textarea');
+
+            // Фокус на первом поле при загрузке
+            if (firstInput) {
+                setTimeout(() => firstInput.focus(), 100);
+            }
+
+            // Закрытие модального окна
+            closeButtons.forEach(button => {
+                button.addEventListener('click', closeModal);
+                button.addEventListener('keydown', function(e) {
+                    if (e.key === 'Enter' || e.key === ' ') {
+                        e.preventDefault();
+                        closeModal();
+                    }
+                });
+            });
+
+            // Закрытие по ESC
+            document.addEventListener('keydown', function(e) {
+                if (e.key === 'Escape' && modal.classList.contains('show')) {
+                    closeModal();
+                }
+            });
+
+            // Закрытие по клику вне модального окна
+            modal.addEventListener('click', function(e) {
+                if (e.target === modal) {
+                    closeModal();
+                }
+            });
+
+            function closeModal() {
+                modal.classList.remove('show');
+                modal.setAttribute('aria-hidden', 'true');
+                document.querySelector('button[type="submit"]').focus();
+            }
+
+            function showModal() {
+                modal.classList.add('show');
+                modal.setAttribute('aria-hidden', 'false');
+                document.querySelector('.modal-close').focus();
+            }
+
+            // Валидация формы
+            form.addEventListener('submit', function(e) {
+                e.preventDefault();
+                
+                let isValid = true;
+                const requiredFields = form.querySelectorAll('[required]');
+                
+                requiredFields.forEach(field => {
+                    if (!field.value.trim()) {
+                        field.setAttribute('aria-invalid', 'true');
+                        const errorElement = field.nextElementSibling?.nextElementSibling;
+                        if (errorElement) {
+                            errorElement.textContent = 'Это поле обязательно для заполнения';
+                            errorElement.style.display = 'block';
+                        }
+                        isValid = false;
+                    } else {
+                        field.setAttribute('aria-invalid', 'false');
+                        const errorElement = field.nextElementSibling?.nextElementSibling;
+                        if (errorElement) {
+                            errorElement.style.display = 'none';
+                        }
+                    }
+                });
+
+                // Валидация email
+                const emailField = document.getElementById('email');
+                if (emailField.value && !isValidEmail(emailField.value)) {
+                    emailField.setAttribute('aria-invalid', 'true');
+                    document.getElementById('email-error').textContent = 'Пожалуйста, введите корректный email адрес';
+                    document.getElementById('email-error').style.display = 'block';
+                    isValid = false;
+                }
+
+                if (isValid) {
+                    showModal();
+                    form.reset();
+                }
+            });
+
+            function isValidEmail(email) {
+                return /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email);
+            }
+
+            // Live region для ошибок
+            const inputs = form.querySelectorAll('input, textarea, select');
+            inputs.forEach(input => {
+                input.addEventListener('blur', function() {
+                    if (this.hasAttribute('required') && !this.value.trim()) {
+                        this.setAttribute('aria-invalid', 'true');
+                    } else {
+                        this.setAttribute('aria-invalid', 'false');
+                    }
+                });
+            });
+
+            // Улучшенная навигация с клавиатуры
+            document.addEventListener('keydown', function(e) {
+                if (e.key === 'Tab') {
+                    document.documentElement.style.setProperty('--focus-outline', '2px solid #1d4ed8');
+                }
+            });
+        });
+    </script>
 </body>
 </html>
