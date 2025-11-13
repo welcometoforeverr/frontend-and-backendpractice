@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="ru">
+<html lang="ru" dir="ltr">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -358,6 +358,21 @@
             border-radius: 6px;
             background: #ffffff;
             transition: all 0.3s ease;
+            /* ЧЕРНЫЙ ЦВЕТ ТЕКСТА ДЛЯ ВСЕХ ПОЛЕЙ ВВОДА */
+            color: #000000 !important;
+        }
+
+        /* Специфичные стили для option в select */
+        .form-select option {
+            color: #000000 !important;
+            background: #ffffff !important;
+        }
+
+        /* Стили для placeholder */
+        .form-input::placeholder,
+        .form-textarea::placeholder {
+            color: #666666 !important;
+            opacity: 1;
         }
 
         .form-input:focus,
@@ -409,6 +424,13 @@
                 border-color: #000000;
                 background: #ffffff;
             }
+            
+            .form-input,
+            .form-textarea,
+            .form-select {
+                color: #000000 !important;
+                background: #ffffff !important;
+            }
         }
 
         /* Reduced motion support */
@@ -423,6 +445,26 @@
             .btn-primary:hover {
                 transform: none;
             }
+        }
+
+        /* Стили для общего списка ошибок формы */
+        .form-errors {
+            background: #fef2f2;
+            border: 2px solid #b91c1c;
+            border-radius: 8px;
+            padding: 1rem;
+            margin-bottom: 2rem;
+            color: #b91c1c;
+            font-weight: 600;
+        }
+
+        .form-errors ul {
+            margin: 0;
+            padding-left: 1.5rem;
+        }
+
+        .form-errors li {
+            margin-bottom: 0.5rem;
         }
     </style>
 </head>
@@ -462,6 +504,9 @@
                 <section class="contact-form-section" aria-labelledby="form-title">
                     <h2 id="form-title" class="form-title">Контактная форма</h2>
                     
+                    <!-- Общий список ошибок формы -->
+                    <div id="form-errors" class="visually-hidden" aria-live="polite" role="alert"></div>
+                    
                     <form id="contactForm" class="contact-form" novalidate>
                         <fieldset class="form-fieldset">
                             <legend class="form-legend">Персональная информация</legend>
@@ -479,7 +524,7 @@
                                            aria-required="true"
                                            aria-describedby="name-error name-hint"
                                            placeholder="Введите ваше имя"
-                                           style="width: 100%; padding: 0.875rem; border: 2px solid #475569; border-radius: 6px; font-size: 1.1rem;">
+                                           style="width: 100%; padding: 0.875rem; border: 2px solid #475569; border-radius: 6px; font-size: 1.1rem; color: #000000 !important;">
                                     <div id="name-hint" class="form-hint">Можно использовать русские или английские буквы</div>
                                     <div id="name-error" class="error-message" role="alert" aria-live="polite">Пожалуйста, введите ваше имя</div>
                                 </div>
@@ -496,7 +541,7 @@
                                            aria-required="true"
                                            aria-describedby="email-error email-hint"
                                            placeholder="example@mail.ru"
-                                           style="width: 100%; padding: 0.875rem; border: 2px solid #475569; border-radius: 6px; font-size: 1.1rem;">
+                                           style="width: 100%; padding: 0.875rem; border: 2px solid #475569; border-radius: 6px; font-size: 1.1rem; color: #000000 !important;">
                                     <div id="email-hint" class="form-hint">Мы пришлём ответ на этот адрес</div>
                                     <div id="email-error" class="error-message" role="alert" aria-live="polite">Пожалуйста, введите корректный email</div>
                                 </div>
@@ -509,7 +554,7 @@
                             <div class="form-group">
                                 <label for="subject" class="form-label">Тема сообщения</label>
                                 <select class="form-select" id="subject" name="subject" aria-describedby="subject-hint"
-                                        style="width: 100%; padding: 0.875rem; border: 2px solid #475569; border-radius: 6px; font-size: 1.1rem;">
+                                        style="width: 100%; padding: 0.875rem; border: 2px solid #475569; border-radius: 6px; font-size: 1.1rem; color: #000000 !important;">
                                     <option value="">Выберите тему...</option>
                                     <option value="collaboration">Сотрудничество</option>
                                     <option value="project">Обсуждение проекта</option>
@@ -531,7 +576,7 @@
                                           aria-required="true"
                                           aria-describedby="message-error message-hint"
                                           placeholder="Опишите ваше предложение или вопрос..."
-                                          style="width: 100%; padding: 0.875rem; border: 2px solid #475569; border-radius: 6px; font-size: 1.1rem; resize: vertical;"></textarea>
+                                          style="width: 100%; padding: 0.875rem; border: 2px solid #475569; border-radius: 6px; font-size: 1.1rem; resize: vertical; color: #000000 !important;"></textarea>
                                 <div id="message-hint" class="form-hint">Минимум 10 символов</div>
                                 <div id="message-error" class="error-message" role="alert" aria-live="polite">Пожалуйста, введите сообщение</div>
                             </div>
@@ -585,7 +630,7 @@
                     
                     <div class="contact-methods" role="list">
                         <div class="contact-method" role="listitem">
-                            <div class="contact-icon" aria-hidden="true">📧</div>
+                            <div class="contact-icon" aria-hidden="true" role="img" aria-label="Электронная почта">📧</div>
                             <div class="contact-details">
                                 <h3 class="contact-method-title">Email</h3>
                                 <a href="mailto:kalugin.n.a@edu.mirea.ru" class="contact-link">
@@ -596,7 +641,7 @@
                         </div>
                         
                         <div class="contact-method" role="listitem">
-                            <div class="contact-icon" aria-hidden="true">💻</div>
+                            <div class="contact-icon" aria-hidden="true" role="img" aria-label="GitHub репозиторий">💻</div>
                             <div class="contact-details">
                                 <h3 class="contact-method-title">GitHub</h3>
                                 <a href="https://github.com/welcome2foreverr" class="contact-link" target="_blank" rel="noopener noreferrer">
@@ -607,7 +652,7 @@
                         </div>
                         
                         <div class="contact-method" role="listitem">
-                            <div class="contact-icon" aria-hidden="true">📍</div>
+                            <div class="contact-icon" aria-hidden="true" role="img" aria-label="Местоположение">📍</div>
                             <div class="contact-details">
                                 <h3 class="contact-method-title">Местоположение</h3>
                                 <p class="contact-text" style="color: #1e293b; font-weight: 600; font-size: 1.1rem;">Россия, Москва</p>
@@ -616,7 +661,7 @@
                         </div>
                         
                         <div class="contact-method" role="listitem">
-                            <div class="contact-icon" aria-hidden="true">✈️</div>
+                            <div class="contact-icon" aria-hidden="true" role="img" aria-label="Telegram мессенджер">✈️</div>
                             <div class="contact-details">
                                 <h3 class="contact-method-title">Telegram</h3>
                                 <a href="https://t.me/psych0somatics" class="contact-link" target="_blank" rel="noopener noreferrer">
@@ -651,7 +696,7 @@
                     </button>
                 </div>
                 <div class="modal-body">
-                    <div class="success-icon" aria-hidden="true">✅</div>
+                    <div class="success-icon" aria-hidden="true" role="img" aria-label="Успешно">✅</div>
                     <p style="margin: 1.5rem 0; color: #1e293b; font-size: 1.1rem; line-height: 1.6;">Спасибо за ваше сообщение! Я свяжусь с вами в ближайшее время.</p>
                     <div class="modal-actions">
                         <button class="btn btn-primary" id="successOk"
@@ -677,10 +722,34 @@
             const modal = document.getElementById('successModal');
             const closeButtons = document.querySelectorAll('.modal-close, #successOk');
             const firstInput = form.querySelector('input, select, textarea');
+            const formErrors = document.getElementById('form-errors');
 
             // Фокус на первом поле при загрузке
             if (firstInput) {
                 setTimeout(() => firstInput.focus(), 100);
+            }
+
+            // Trap focus в модальном окне
+            function trapFocus(element) {
+                const focusableElements = element.querySelectorAll('button, [href], input, select, textarea, [tabindex]:not([tabindex="-1"])');
+                const firstElement = focusableElements[0];
+                const lastElement = focusableElements[focusableElements.length - 1];
+                
+                element.addEventListener('keydown', function(e) {
+                    if (e.key === 'Tab') {
+                        if (e.shiftKey) {
+                            if (document.activeElement === firstElement) {
+                                e.preventDefault();
+                                lastElement.focus();
+                            }
+                        } else {
+                            if (document.activeElement === lastElement) {
+                                e.preventDefault();
+                                firstElement.focus();
+                            }
+                        }
+                    }
+                });
             }
 
             // Закрытие модального окна
@@ -717,7 +786,31 @@
             function showModal() {
                 modal.classList.add('show');
                 modal.setAttribute('aria-hidden', 'false');
+                trapFocus(modal);
                 document.querySelector('.modal-close').focus();
+            }
+
+            // Функция для показа общего списка ошибок
+            function showFormErrors(errors) {
+                if (errors.length > 0) {
+                    const errorList = errors.map(error => `<li>${error}</li>`).join('');
+                    formErrors.innerHTML = `
+                        <div class="form-errors" role="alert">
+                            <h3>Пожалуйста, исправьте следующие ошибки:</h3>
+                            <ul>${errorList}</ul>
+                        </div>
+                    `;
+                    formErrors.classList.remove('visually-hidden');
+                    
+                    // Фокус на первый элемент с ошибкой
+                    const firstErrorField = form.querySelector('[aria-invalid="true"]');
+                    if (firstErrorField) {
+                        firstErrorField.focus();
+                    }
+                } else {
+                    formErrors.classList.add('visually-hidden');
+                    formErrors.innerHTML = '';
+                }
             }
 
             // Валидация формы
@@ -725,7 +818,12 @@
                 e.preventDefault();
                 
                 let isValid = true;
+                const errors = [];
                 const requiredFields = form.querySelectorAll('[required]');
+                
+                // Сброс предыдущих ошибок
+                formErrors.classList.add('visually-hidden');
+                formErrors.innerHTML = '';
                 
                 requiredFields.forEach(field => {
                     if (!field.value.trim()) {
@@ -736,6 +834,7 @@
                             errorElement.style.display = 'block';
                         }
                         isValid = false;
+                        errors.push(`Поле "${field.labels[0]?.textContent?.trim()}" обязательно для заполнения`);
                     } else {
                         field.setAttribute('aria-invalid', 'false');
                         const errorElement = field.nextElementSibling?.nextElementSibling;
@@ -752,11 +851,28 @@
                     document.getElementById('email-error').textContent = 'Пожалуйста, введите корректный email адрес';
                     document.getElementById('email-error').style.display = 'block';
                     isValid = false;
+                    errors.push('Пожалуйста, введите корректный email адрес');
                 }
 
-                if (isValid) {
+                // Валидация длины сообщения
+                const messageField = document.getElementById('message');
+                if (messageField.value && messageField.value.trim().length < 10) {
+                    messageField.setAttribute('aria-invalid', 'true');
+                    document.getElementById('message-error').textContent = 'Сообщение должно содержать минимум 10 символов';
+                    document.getElementById('message-error').style.display = 'block';
+                    isValid = false;
+                    errors.push('Сообщение должно содержать минимум 10 символов');
+                }
+
+                if (!isValid) {
+                    showFormErrors(errors);
+                } else {
                     showModal();
                     form.reset();
+                    // Сброс всех состояний ошибок
+                    form.querySelectorAll('[aria-invalid]').forEach(field => {
+                        field.setAttribute('aria-invalid', 'false');
+                    });
                 }
             });
 
